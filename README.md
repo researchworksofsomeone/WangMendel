@@ -360,6 +360,168 @@ Cell 26 draws every file in `paper_final/`. It computes nothing new: it reads th
 - **Training precision:** fp32 throughout (`AMP_DTYPE = None`, `ALLOW_TF32 = False`).
 - **Test blocks:** they are used only for the reported scores. Every choice of configuration is made on the training rows and the validation blocks.
 
+## References
+
+The works cited in the paper, grouped by topic. Entries follow APA (7th edition) style.
+
+### Spiking neural P systems
+
+Guo, Y., Wang, J., Peng, H., Ramírez-de-Arellano, A., & Hu, H. (2026). Time series prediction based on multi-head gated fusion spiking neural P systems. *Knowledge-Based Systems*, *347*, 116223. <https://doi.org/10.1016/j.knosys.2026.116223>
+
+Guo, Y., Wang, J., Peng, H., Wang, T., Hu, H., & Ramírez-de-Arellano, A. (2026). A multi-scale spatiotemporal spiking neural model for power load forecasting considering extreme weather impact. *International Journal of Electrical Power & Energy Systems*, *175*, 111604. <https://doi.org/10.1016/j.ijepes.2026.111604>
+
+He, J., Peng, H., Wang, J., & Ramírez-de-Arellano, A. (2024). A deep echo-like spiking neural P systems for time series prediction. *Knowledge-Based Systems*, *304*, 112560. <https://doi.org/10.1016/j.knosys.2024.112560>
+
+He, J., Peng, H., Wang, J., Yang, Q., & Ramírez-de-Arellano, A. (2024). K-order echo-type spiking neural P systems for time series forecasting. *Neurocomputing*, *610*, 128613. <https://doi.org/10.1016/j.neucom.2024.128613>
+
+Huang, Y., Liu, Q., Peng, H., Wang, J., Yang, Q., & Orellana-Martín, D. (2023). Sentiment classification using bidirectional LSTM-SNP model and attention mechanism. *Expert Systems with Applications*, *221*, 119730. <https://doi.org/10.1016/j.eswa.2023.119730>
+
+Ionescu, M., Păun, G., & Yokomori, T. (2006). Spiking neural P systems. *Fundamenta Informaticae*, *71*(2–3), 279–308. <https://doi.org/10.3233/FUN-2006-712-308>
+
+Liu, Q., Long, L., Peng, H., Wang, J., Yang, Q., Song, X., Riscos-Núñez, A., & Pérez-Jiménez, M. J. (2023). Gated spiking neural P systems for time series forecasting. *IEEE Transactions on Neural Networks and Learning Systems*, *34*(9), 6227–6236. <https://doi.org/10.1109/TNNLS.2021.3134792>
+
+Liu, Q., Long, L., Yang, Q., Peng, H., Wang, J., & Luo, X. (2022). LSTM-SNP: A long short-term memory model inspired from spiking neural P systems. *Knowledge-Based Systems*, *235*, 107656. <https://doi.org/10.1016/j.knosys.2021.107656>
+
+Liu, Q., Peng, H., Long, L., Wang, J., Yang, Q., Pérez-Jiménez, M. J., & Orellana-Martín, D. (2024). Nonlinear spiking neural systems with autapses for predicting chaotic time series. *IEEE Transactions on Cybernetics*, *54*(3), 1841–1853. <https://doi.org/10.1109/TCYB.2023.3270873>
+
+Long, L., Liu, Q., Peng, H., Yang, Q., Luo, X., Wang, J., & Song, X. (2022). A time series forecasting approach based on nonlinear spiking neural systems. *International Journal of Neural Systems*, *32*(8), 2250020. <https://doi.org/10.1142/S0129065722500204>
+
+Long, L., Lugu, R., Xiong, X., Liu, Q., Peng, H., Wang, J., Orellana-Martín, D., & Pérez-Jiménez, M. J. (2022). Echo spiking neural P systems. *Knowledge-Based Systems*, *253*, 109568. <https://doi.org/10.1016/j.knosys.2022.109568>
+
+Paul, P., Sosík, P., & Ciencialová, L. (2024). *A survey on learning models of spiking neural membrane systems and spiking neural networks* (arXiv:2403.18609) [Preprint]. arXiv. <https://doi.org/10.48550/arXiv.2403.18609>
+
+Păun, G. (2000). Computing with membranes. *Journal of Computer and System Sciences*, *61*(1), 108–143. <https://doi.org/10.1006/jcss.1999.1693>
+
+Peng, H., Lv, Z., Li, B., Luo, X., Wang, J., Song, X., Wang, T., Pérez-Jiménez, M. J., & Riscos-Núñez, A. (2020). Nonlinear spiking neural P systems. *International Journal of Neural Systems*, *30*(10), 2050008. <https://doi.org/10.1142/S0129065720500082>
+
+Xu, J., Pan, J., Su, S., Li, H., Zhao, R., & Ding, F. (2026). Multivariate time series forecasting with a numerical spiking neural P system-inspired network. *Neurocomputing*, *700*, 134476. <https://doi.org/10.1016/j.neucom.2026.134476>
+
+Zhang, Y., Yang, Q., Liu, Z., Peng, H., & Wang, J. (2023). A prediction model based on gated nonlinear spiking neural systems. *International Journal of Neural Systems*, *33*(6), 2350029. <https://doi.org/10.1142/S0129065723500296>
+
+### Spiking neural networks and neuromorphic computing
+
+Bakhshaliyev, J., & Landwehr, N. (2026). *SpikF-GO: Spiking Fourier graph operators for multivariate time series forecasting* (arXiv:2606.13901) [Preprint]. arXiv. Accepted at ECML PKDD 2026. <https://doi.org/10.48550/arXiv.2606.13901>
+
+Bellec, G., Salaj, D., Subramoney, A., Legenstein, R., & Maass, W. (2018). Long short-term memory and learning-to-learn in networks of spiking neurons. In *Advances in Neural Information Processing Systems* (Vol. 31, pp. 787–797). <https://doi.org/10.48550/arXiv.1803.09574>
+
+Chakraborty, B., & Mukhopadhyay, S. (2023). Brain-inspired spiking neural network for online unsupervised time series prediction. In *2023 International Joint Conference on Neural Networks (IJCNN)* (pp. 1–8). IEEE. <https://doi.org/10.1109/IJCNN54540.2023.10191645>
+
+Davies, M., et al. (2018). Loihi: A neuromorphic manycore processor with on-chip learning. *IEEE Micro*, *38*(1), 82–99. <https://doi.org/10.1109/MM.2018.112130359>
+
+Feng, S., Feng, W., Gao, X., Zhao, P., & Shen, Z. (2025). TS-LIF: A temporal segment spiking neuron network for time series forecasting. In *International Conference on Learning Representations (ICLR)* (pp. 28064–28084). <https://doi.org/10.48550/arXiv.2503.05108>
+
+Horowitz, M. (2014). Computing's energy problem (and what we can do about it). In *IEEE International Solid-State Circuits Conference (ISSCC)* (pp. 10–14). IEEE. <https://doi.org/10.1109/ISSCC.2014.6757323>
+
+Hu, B., Lv, C., Li, M., Liu, Y., Zheng, X., Zhang, F., Cao, W., & Zhang, F. (2025). *SpikeSTAG: Spatial-temporal forecasting via GNN-SNN collaboration* (arXiv:2508.02069) [Preprint]. arXiv. <https://doi.org/10.48550/arXiv.2508.02069>
+
+Lucas, S., & Portillo, E. (2024). Methodology based on spiking neural networks for univariate time-series forecasting. *Neural Networks*, *173*, 106171. <https://doi.org/10.1016/j.neunet.2024.106171>
+
+Lv, C., Wang, Y., Han, D., Zheng, X., Huang, X., & Li, D. (2024). Efficient and effective time-series forecasting with spiking neural networks. In *Proceedings of the 41st International Conference on Machine Learning* (Proceedings of Machine Learning Research, Vol. 235, pp. 33624–33637). PMLR. <https://doi.org/10.48550/arXiv.2402.01533>
+
+Maass, W. (1997). Networks of spiking neurons: The third generation of neural network models. *Neural Networks*, *10*(9), 1659–1671. <https://doi.org/10.1016/S0893-6080(97)00011-7>
+
+Meshram, N., Anand, V., & Tiwari, V. (2026). TSA-Net+: A communication-aware hybrid ANN-SNN framework for energy-efficient IoT inference. *Internet of Things*, *40*, 102117. <https://doi.org/10.1016/j.iot.2026.102117>
+
+Neftci, E. O., Mostafa, H., & Zenke, F. (2019). Surrogate gradient learning in spiking neural networks. *IEEE Signal Processing Magazine*, *36*(6), 51–63. <https://doi.org/10.1109/MSP.2019.2931595>
+
+Tang, K., Zheng, J., Jin, Y., Qiu, Y., Sun, G., Yan, Z., & Wong, W.-F. (2026). *SpikySpace: A spiking state space model for energy-efficient time series forecasting* (arXiv:2601.02411) [Preprint]. arXiv. <https://doi.org/10.48550/arXiv.2601.02411>
+
+Wu, W., Huo, D., & Chen, H. (2025). SpikF: Spiking Fourier network for efficient long-term prediction. In *Proceedings of the 42nd International Conference on Machine Learning* (Proceedings of Machine Learning Research, Vol. 267, pp. 67342–67368). PMLR. <https://proceedings.mlr.press/v267/wu25m.html>
+
+### Fuzzy rule bases, closed-form and reservoir models
+
+Allen, D. M. (1974). The relationship between variable selection and data augmentation and a method for prediction. *Technometrics*, *16*(1), 125–127. <https://doi.org/10.1080/00401706.1974.10489157>
+
+Eilers, P. H. C., & Marx, B. D. (1996). Flexible smoothing with B-splines and penalties. *Statistical Science*, *11*(2), 89–121. <https://doi.org/10.1214/ss/1038425655>
+
+Gauthier, D. J., Bollt, E., Griffith, A., & Barbosa, W. A. S. (2021). Next generation reservoir computing. *Nature Communications*, *12*, 5564. <https://doi.org/10.1038/s41467-021-25801-2>
+
+Hoerl, A. E., & Kennard, R. W. (1970). Ridge regression: Biased estimation for nonorthogonal problems. *Technometrics*, *12*(1), 55–67. <https://doi.org/10.1080/00401706.1970.10488634>
+
+Jaeger, H., & Haas, H. (2004). Harnessing nonlinearity: Predicting chaotic systems and saving energy in wireless communication. *Science*, *304*(5667), 78–80. <https://doi.org/10.1126/science.1091277>
+
+Jang, J.-S. R. (1993). ANFIS: Adaptive-network-based fuzzy inference system. *IEEE Transactions on Systems, Man, and Cybernetics*, *23*(3), 665–685. <https://doi.org/10.1109/21.256541>
+
+Park, J., & Sandberg, I. W. (1991). Universal approximation using radial-basis-function networks. *Neural Computation*, *3*(2), 246–257. <https://doi.org/10.1162/neco.1991.3.2.246>
+
+Takagi, T., & Sugeno, M. (1985). Fuzzy identification of systems and its applications to modeling and control. *IEEE Transactions on Systems, Man, and Cybernetics*, *SMC-15*(1), 116–132. <https://doi.org/10.1109/TSMC.1985.6313399>
+
+Wang, L.-X., & Mendel, J. M. (1992). Generating fuzzy rules by learning from examples. *IEEE Transactions on Systems, Man, and Cybernetics*, *22*(6), 1414–1427. <https://doi.org/10.1109/21.199466>
+
+### Neural forecasting baselines
+
+Bahdanau, D., Cho, K., & Bengio, Y. (2015). Neural machine translation by jointly learning to align and translate. In *International Conference on Learning Representations (ICLR)* (pp. 1–15). <https://doi.org/10.48550/arXiv.1409.0473>
+
+Cho, K., van Merriënboer, B., Gulcehre, C., Bahdanau, D., Bougares, F., Schwenk, H., & Bengio, Y. (2014). Learning phrase representations using RNN encoder–decoder for statistical machine translation. In *Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)* (pp. 1724–1734). Association for Computational Linguistics. <https://doi.org/10.3115/v1/D14-1179>
+
+Hochreiter, S., & Schmidhuber, J. (1997). Long short-term memory. *Neural Computation*, *9*(8), 1735–1780. <https://doi.org/10.1162/neco.1997.9.8.1735>
+
+Wu, H., Xu, J., Wang, J., & Long, M. (2021). Autoformer: Decomposition transformers with auto-correlation for long-term series forecasting. In *Advances in Neural Information Processing Systems* (Vol. 34, pp. 22419–22430). <https://doi.org/10.48550/arXiv.2106.13008>
+
+Zeng, A., Chen, M., Zhang, L., & Xu, Q. (2023). Are transformers effective for time series forecasting? In *Proceedings of the AAAI Conference on Artificial Intelligence* (Vol. 37, pp. 11121–11128). <https://doi.org/10.1609/aaai.v37i9.26317>
+
+Zhou, H., Zhang, S., Peng, J., Zhang, S., Li, J., Xiong, H., & Zhang, W. (2021). Informer: Beyond efficient transformer for long sequence time-series forecasting. In *Proceedings of the AAAI Conference on Artificial Intelligence* (Vol. 35, pp. 11106–11115). <https://doi.org/10.1609/aaai.v35i12.17325>
+
+Zhou, T., Ma, Z., Wen, Q., Wang, X., Sun, L., & Jin, R. (2022). FEDformer: Frequency enhanced decomposed transformer for long-term series forecasting. In *Proceedings of the 39th International Conference on Machine Learning* (Proceedings of Machine Learning Research, Vol. 162, pp. 27268–27286). PMLR. <https://doi.org/10.48550/arXiv.2201.12740>
+
+### Datasets
+
+Lorenz, E. N. (1963). Deterministic nonperiodic flow. *Journal of the Atmospheric Sciences*, *20*(2), 130–141. [https://doi.org/10.1175/1520-0469(1963)020&lt;0130:DNF&gt;2.0.CO;2](https://doi.org/10.1175/1520-0469%281963%29020%3C0130%3ADNF%3E2.0.CO%3B2)
+
+Mackey, M. C., & Glass, L. (1977). Oscillation and chaos in physiological control systems. *Science*, *197*(4300), 287–289. <https://doi.org/10.1126/science.267326>
+
+Rössler, O. E. (1976). An equation for continuous chaos. *Physics Letters A*, *57*(5), 397–398. <https://doi.org/10.1016/0375-9601(76)90101-8>
+
+### Evaluation and statistical testing
+
+Benavoli, A., Corani, G., Demšar, J., & Zaffalon, M. (2017). Time for a change: A tutorial for comparing multiple classifiers through Bayesian analysis. *Journal of Machine Learning Research*, *18*(77), 1–36. <https://doi.org/10.48550/arXiv.1606.04316>
+
+Bergmeir, C., & Benítez, J. M. (2012). On the use of cross-validation for time series predictor evaluation. *Information Sciences*, *191*, 192–213. <https://doi.org/10.1016/j.ins.2011.12.028>
+
+Demšar, J. (2006). Statistical comparisons of classifiers over multiple data sets. *Journal of Machine Learning Research*, *7*, 1–30. <https://www.jmlr.org/papers/v7/demsar06a.html>
+
+Diebold, F. X., & Mariano, R. S. (1995). Comparing predictive accuracy. *Journal of Business & Economic Statistics*, *13*(3), 253–263. <https://doi.org/10.1080/07350015.1995.10524599>
+
+Friedman, M. (1937). The use of ranks to avoid the assumption of normality implicit in the analysis of variance. *Journal of the American Statistical Association*, *32*(200), 675–701. <https://doi.org/10.1080/01621459.1937.10503522>
+
+García, S., Fernández, A., Luengo, J., & Herrera, F. (2010). Advanced nonparametric tests for multiple comparisons in the design of experiments in computational intelligence and data mining: Experimental analysis of power. *Information Sciences*, *180*(10), 2044–2064. <https://doi.org/10.1016/j.ins.2009.12.010>
+
+Harvey, D., Leybourne, S., & Newbold, P. (1997). Testing the equality of prediction mean squared errors. *International Journal of Forecasting*, *13*(2), 281–291. <https://doi.org/10.1016/S0169-2070(96)00719-4>
+
+Hollander, M., Wolfe, D. A., & Chicken, E. (2015). *Nonparametric statistical methods* (3rd ed.). Wiley. <https://doi.org/10.1002/9781119196037>
+
+Holm, S. (1979). A simple sequentially rejective multiple test procedure. *Scandinavian Journal of Statistics*, *6*(2), 65–70. <https://doi.org/10.2307/4615733>
+
+Hyndman, R. J., & Koehler, A. B. (2006). Another look at measures of forecast accuracy. *International Journal of Forecasting*, *22*(4), 679–688. <https://doi.org/10.1016/j.ijforecast.2006.03.001>
+
+Iman, R. L., & Davenport, J. M. (1980). Approximations of the critical region of the Friedman statistic. *Communications in Statistics – Theory and Methods*, *9*(6), 571–595. <https://doi.org/10.1080/03610928008827904>
+
+Tashman, L. J. (2000). Out-of-sample tests of forecasting accuracy: An analysis and review. *International Journal of Forecasting*, *16*(4), 437–450. <https://doi.org/10.1016/S0169-2070(00)00065-0>
+
+Wilcoxon, F. (1945). Individual comparisons by ranking methods. *Biometrics Bulletin*, *1*(6), 80–83. <https://doi.org/10.2307/3001968>
+
+### Mathematical and statistical foundations
+
+Arthur, D., & Vassilvitskii, S. (2007). k-means++: The advantages of careful seeding. In *Proceedings of the Eighteenth Annual ACM-SIAM Symposium on Discrete Algorithms (SODA)* (pp. 1027–1035). Society for Industrial and Applied Mathematics. <https://dl.acm.org/doi/10.5555/1283383.1283494>
+
+de Boor, C. (2001). *A practical guide to splines* (Rev. ed.). Springer. <https://doi.org/10.1007/978-1-4612-6333-3>
+
+Golub, G. H., & Van Loan, C. F. (2013). *Matrix computations* (4th ed.). Johns Hopkins University Press. <https://doi.org/10.56021/9781421407944>
+
+Hastie, T., Tibshirani, R., & Friedman, J. (2009). *The elements of statistical learning* (2nd ed.). Springer. <https://doi.org/10.1007/978-0-387-84858-7>
+
+Horn, R. A., & Johnson, C. R. (2012). *Matrix analysis* (2nd ed.). Cambridge University Press. <https://doi.org/10.1017/CBO9781139020411>
+
+Katznelson, Y. (2004). *An introduction to harmonic analysis* (3rd ed.). Cambridge University Press. <https://doi.org/10.1017/CBO9781139165372>
+
+Lloyd, S. (1982). Least squares quantization in PCM. *IEEE Transactions on Information Theory*, *28*(2), 129–137. <https://doi.org/10.1109/TIT.1982.1056489>
+
+Sherman, J., & Morrison, W. J. (1950). Adjustment of an inverse matrix corresponding to a change in one element of a given matrix. *The Annals of Mathematical Statistics*, *21*(1), 124–127. <https://doi.org/10.1214/aoms/1177729893>
+
+Stone, M. (1974). Cross-validatory choice and assessment of statistical predictions. *Journal of the Royal Statistical Society: Series B (Methodological)*, *36*(2), 111–133. <https://doi.org/10.1111/j.2517-6161.1974.tb00994.x>
+
+White, H. (1980). A heteroskedasticity-consistent covariance matrix estimator and a direct test for heteroskedasticity. *Econometrica*, *48*(4), 817–838. <https://doi.org/10.2307/1912934>
+
 ## License
 
 MIT License. See `LICENSE`.
