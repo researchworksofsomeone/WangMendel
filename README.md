@@ -82,7 +82,7 @@ with $`x(0) = 1.2`$, $`x(1) = 1.0`$ and $`x(t) = 0`$ for $`t < 0`$. Cell 3 check
 
 This section states the models and every mathematical result of the paper. The full proofs are in the supplementary material. Notation:
 
-- $`\sigma`$ is the logistic function, $`\operatorname{softplus}(x) = \log(1 + e^{x})`$, and $`\Theta`$ is the Heaviside step.
+- $`\sigma`$ is the logistic function, $`\mathrm{softplus}(x) = \log(1 + e^{x})`$, and $`\Theta`$ is the Heaviside step.
 - $`\odot`$ is the entry-wise product.
 - $`L`$ is the window length (number of delays), $`M`$ the number of receptive fields per delay, and $`C`$ the number of state neurons.
 - Each series ends in $`J = 5`$ test blocks. Test block $`j`$ is preceded by a validation block $`\mathcal{V}_j`$ of the same length, and every earlier point is the training set $`\mathcal{D}_j`$.
@@ -91,7 +91,7 @@ This section states the models and every mathematical result of the paper. The f
 
 | | Assumption |
 |---|---|
-| A1 (ALSTM-SNP) | $`\alpha, \rho \in (0,1)`$ through $`\sigma`$; $`\beta = \operatorname{softplus}(\cdot) \ge 0`$; $`b_0 = \operatorname{softplus}(\cdot) + 10^{-3} > 0`$; $`u_0 = \eta_0 = h_0 = 0`$. |
+| A1 (ALSTM-SNP) | $`\alpha, \rho \in (0,1)`$ through $`\sigma`$; $`\beta = \mathrm{softplus}(\cdot) \ge 0`$; $`b_0 = \mathrm{softplus}(\cdot) + 10^{-3} > 0`$; $`u_0 = \eta_0 = h_0 = 0`$. |
 | A2 (grid) | The centres are $`c_m = c_1 + (m-1)\Delta`$, with $`c_1 = -1.1`$, $`c_M = 1.1`$ and $`\Delta = 2.2/(M-1)`$. The scaling maps the training range onto $`[-1, 1]`$. |
 | A3 (ridge) | Every TRACE-SNP candidate has the penalty $`P = \lambda_0 I + P'`$, with $`\lambda_0 > 0`$ and $`P' \succeq 0`$. |
 | A4 (information set) | Every quantity used for test block $`j`$ (scaling, prototypes, weights, hyperparameters, field family, multi-step mode) is computed from $`\mathcal{D}_j \cup \mathcal{V}_j`$ only. |
@@ -105,7 +105,7 @@ This section states the models and every mathematical result of the paper. The f
 - a charge $`q_t`$, computed from its inputs and its previous state;
 - a threshold $`B_t`$.
 
-It fires when $`z_t = \mathbb{1}[q_t \ge B_t]`$, and updates
+It fires when $`z_t = \mathbf{1}[q_t \ge B_t]`$, and updates
 
 ```math
 u_t = r_t\,u_{t-1} + i_t - z_t\,\kappa_t, \qquad h_t = z_t\,e_t,
@@ -133,7 +133,7 @@ v_t &= (\tilde u_t - B_t) \oslash B_t, &
 z_t &= \Theta(v_t),\\
 u_t &= \tilde u_t - z_t \odot c_t \odot B_t, &
 \eta_t &= \rho \odot \eta_{t-1} + (1-\rho) \odot z_t,\\
-h_t &= o_t \odot z_t \odot \operatorname{softplus}(\tilde u_t).
+h_t &= o_t \odot z_t \odot \mathrm{softplus}(\tilde u_t).
 \end{aligned}
 ```
 
@@ -145,7 +145,7 @@ Training uses the surrogate derivative $`\psi(v) = \gamma \max\left(0,\, 1 - \lv
 | The firing condition is well defined | $`b_0 \le B_t \le b_0 + \beta\left(1 - \rho^{t-1}\right) < b_0 + \beta`$. Hence $`v_t`$ is finite, and $`z_t = 1`$ if and only if $`\tilde u_t \ge B_t`$. |
 | $`b_0 > 0`$ is necessary | If $`b_0 = 0`$, then $`v_1`$ is undefined. As $`b_0 \to 0`$, a neuron that has not fired receives no learning signal on almost every input. |
 | Unconditional boundedness | For every input sequence, bounded or not: $`\lvert u_t \rvert \le \lvert \tilde u_t \rvert < \dfrac{1 - \bar\alpha^{t}}{1 - \bar\alpha} < \dfrac{1}{1 - \bar\alpha}`$, where $`\bar\alpha = \max_j \alpha_j`$. |
-| Bounded outputs and forecasts | $`0 \le h_t < \operatorname{softplus}\!\left(\frac{1}{1-\bar\alpha}\right)`$, and $`h_t = 0`$ whenever $`z_t = 0`$. Every iterated $`h`$-step forecast stays in a fixed bounded interval. |
+| Bounded outputs and forecasts | $`0 \le h_t < \mathrm{softplus}\!\left(\frac{1}{1-\bar\alpha}\right)`$, and $`h_t = 0`$ whenever $`z_t = 0`$. Every iterated $`h`$-step forecast stays in a fixed bounded interval. |
 | Bounded surrogate gradients | $`0 \le \dfrac{\partial z_t}{\partial \tilde u_t} \le \dfrac{\gamma}{b_0}`$ and $`\left\lvert \dfrac{\partial z_t}{\partial B_t} \right\rvert \le \dfrac{2\gamma}{b_0}`$. |
 | Silent neurons cost nothing | If $`z_{t,j} = 0`$, then $`h_{t,j} = 0`$ exactly. The recurrent synaptic operations at step $`t+1`$ are $`(H-1)\times`$ the number of neurons that fired at step $`t`$, per gate. |
 
@@ -194,7 +194,7 @@ Persistence, the window mean and ridge AR($`L`$) are always among the candidates
 | Curvature penalty | $`(D_2 w)_m = \Delta^2 f''(\xi_m)`$ when $`w`$ samples a $`C^2`$ function. The null space of $`D_2`$ is the affine functions, so the penalty never shrinks a linear trend. |
 | State neurons | Exactly $`\min(k_a, C)`$ state neurons fire, with $`\nu \ge 0`$ and $`\sum \nu = 1`$. The state pathway is a convex combination of $`k_a`$ local affine models: a first-order Takagi–Sugeno system that is linear in its weights. |
 | Exact activity | With inputs inside the grid, $`2L + k_a`$ of the $`ML + C`$ event neurons fire, for example $`44/704 = 6.25\,\%`$ at $`L = 20`$, $`M = 32`$, $`C = 64`$. Without the state pathway the share is $`2/M`$. |
-| The ridge is necessary | $`\operatorname{rank} \Phi \le p - 2L`$: each delay has two null directions (the partition of unity and linear reproduction), and both lie in the null space of the curvature penalty. With $`\lambda_0 = 0`$, $`J`$ therefore has infinitely many minimisers. |
+| The ridge is necessary | $`\mathrm{rank} \Phi \le p - 2L`$: each delay has two null directions (the partition of unity and linear reproduction), and both lie in the null space of the curvature penalty. With $`\lambda_0 = 0`$, $`J`$ therefore has infinitely many minimisers. |
 | Existence, uniqueness, stability (A3) | $`A \succeq \lambda_0 I \succ 0`$, and $`J`$ is $`2\lambda_0`$-strongly convex. The unique solution is $`\hat\theta = A^{-1} g`$, with a unique Cholesky factor, $`\lVert \hat\theta \rVert_2 \le \lVert g \rVert_2 / \lambda_0`$, and smooth dependence on the data. |
 | Leverages | $`0 \le H_{ii} \le \dfrac{\lVert \varphi_i \rVert^2 / N}{\lambda_0 + \lVert \varphi_i \rVert^2 / N} < 1`$. |
 | Exact leave-one-out | The residual of the model refitted without row $`i`$ equals $`e_i / (1 - H_{ii})`$. All $`N`$ of them follow from one factorisation. The identity is exact for $`\theta`$ given $`\Phi`$; the scaling and the k-means prototypes are not refitted per row. |
@@ -229,7 +229,7 @@ The Gaussian fields have width $`w\Delta`$, and the $`k`$ fields nearest to $`u`
 
 | Result | Statement |
 |---|---|
-| Exact counts (TRACE family) | $`\mathrm{MAC} = 2L + L + kL + kL\,\mathbb{1}[\text{Gauss}] + \left(Cd + k_a + k_a(d+1)\right)\mathbb{1}[\text{state}]`$. $`\mathrm{AC} = L\,\mathbb{1}[\text{mean anchor}] + L\,\mathbb{1}[\text{difference encoding}]`$. |
+| Exact counts (TRACE family) | $`\mathrm{MAC} = 2L + L + kL + kL\,\mathbf{1}[\text{Gauss}] + \left(Cd + k_a + k_a(d+1)\right)\mathbf{1}[\text{state}]`$. $`\mathrm{AC} = L\,\mathbf{1}[\text{mean anchor}] + L\,\mathbf{1}[\text{difference encoding}]`$. |
 | Recurrent networks | A cell with $`G`$ gates and $`H`$ units needs $`\approx G\,H(H+1)\,L`$ MACs per window. With $`H = 8`$ that is $`288L`$ for the LSTM and LSTM-SNP and $`216L`$ for the GRU. |
 | Members and ensembles | The cost of a forecast averaged over $`n`$ members is $`n`$ times the cost of one member. The networks use $`n = 60`$ and the closed-form models $`n = 1`$. |
 | Benchmark overhead | If a call costs $`E(n) = E_0 + n\,e_1`$, the energy per forecast is $`e_1 + E_0/n`$. Implementations measured with different batch sizes therefore differ even when their arithmetic is identical. Operation counts are the architectural comparison. |
@@ -239,8 +239,8 @@ The Gaussian fields have width $`w\Delta`$, and the $`k`$ fields nearest to $`u`
 | Result | Statement |
 |---|---|
 | Identification | The centred delay function $`\tilde f_k`$ is invariant to every null direction of $`\Phi`$, so it is determined by the forecast function. |
-| Sandwich covariance | $`\operatorname{Cov}(\hat\theta) = \frac{\sigma^2}{N} A^{-1}\left(\frac{1}{N}\Phi^{\top}\Phi\right) A^{-1}`$, and $`\operatorname{Var}\!\left(\tilde f_k(u)\right) = \tilde\ell_k(u)^{\top} \operatorname{Cov}(\hat\theta)\, \tilde\ell_k(u)`$. |
-| Combining refits | $`\operatorname{Var} = \mathbb{E}_j\!\left[\mathrm{se}_j^2\right] + \operatorname{Var}_j\!\left[\tilde f_k^{(j)}\right]`$. The plotted pointwise 95 % band is $`\bar f_k \pm 1.96\left(\overline{\mathrm{se}^2} + \text{between-refit variance}\right)^{1/2}`$. |
+| Sandwich covariance | $`\mathrm{Cov}(\hat\theta) = \frac{\sigma^2}{N} A^{-1}\left(\frac{1}{N}\Phi^{\top}\Phi\right) A^{-1}`$, and $`\mathrm{Var}\!\left(\tilde f_k(u)\right) = \tilde\ell_k(u)^{\top} \mathrm{Cov}(\hat\theta)\, \tilde\ell_k(u)`$. |
+| Combining refits | $`\mathrm{Var} = \mathbb{E}_j\!\left[\mathrm{se}_j^2\right] + \mathrm{Var}_j\!\left[\tilde f_k^{(j)}\right]`$. The plotted pointwise 95 % band is $`\bar f_k \pm 1.96\left(\overline{\mathrm{se}^2} + \text{between-refit variance}\right)^{1/2}`$. |
 
 ### Statistics over the 11 datasets
 
