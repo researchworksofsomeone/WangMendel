@@ -8,7 +8,7 @@ Everything is in one notebook, `trace_snp.ipynb`. Run top to bottom, it takes th
 
 | Path | What it is |
 |---|---|
-| `trace_snp.ipynb` | the complete experiment (27 code cells, numbered 0 to 26) |
+| `trace_snp.ipynb` | the complete experiment (33 code cells, numbered 0 to 32) |
 | `requirements.txt` | Python packages |
 | `datasets.zip` | **all 11 datasets used in the paper**, exactly as used (unzip into `data/`) |
 | `data/` | where the notebook looks for the series first (see [Data](#data)) |
@@ -28,12 +28,14 @@ Everything is in one notebook, `trace_snp.ipynb`. Run top to bottom, it takes th
 - **Networks, all at hidden size 8:** LSTM, GRU, LSTM-SNP, BiLSTM-SNP, an attention model, Informer, Autoformer and FEDformer.
 - **Closed-form and simple models:** NG-RC, DLinear, ridge AR(L), persistence and the window mean.
 - **Control experiments:** an echo-type SNP reservoir, plus tuned and directly trained network variants.
+- **Classical statistical forecasters (extended comparison):** ARIMA, simple and damped Holt exponential smoothing, the seasonal naive forecast and the training median, on the same walk-forward folds, targets and origins. They enter a second ranking with their own tables and figures; the 16-model comparison of the paper is unchanged.
 
 ## Requirements
 
 - Python 3.10 or newer, with the packages in `requirements.txt`. `nvidia-ml-py` is optional: it gives the GPU energy measurements, and without it the notebook reports time only.
 - **Full run:** one CUDA GPU. The settings in cell 0 assume about 70 GB of VRAM and 30 GB of system RAM, which is an RTX 6000-class card. On a smaller GPU, set `RUN_BATCH` in cell 0 (for example `RUN_BATCH = 60`) so that fewer models train at once. Results are the same up to floating-point rounding; only the speed changes.
 - **Smoke test:** a CPU is enough.
+- **Classical forecasters (cell 28):** `statsmodels` (installed by the notebook if it is missing) and a CPU; no GPU is needed.
 
 ```
 pip install -r requirements.txt
@@ -262,7 +264,7 @@ The Gaussian fields have width $`w\Delta`$, and the $`k`$ fields nearest to $`u`
 2. Unzip `datasets.zip` into `data/`.
 3. Run all cells.
 
-Cell 7 (network training) and cells 21–23 (the control networks) take most of the time. Every long cell saves its progress continuously and stops cleanly when `TIME_BUDGET_H` (cell 0, 11 h by default) is reached. To continue, run all cells again: finished lags, folds and seeds are read back from `results/` and are not retrained.
+Cell 7 (network training) and cells 21–23 (the control networks) take most of the time. Cells 26–31 (the extended comparison) take about 6 minutes on a CPU; only cell 28 fits models, and it reuses `results/revisions/extended_checks/statistical_baselines*.csv` when they exist (set `EXT_REFIT_CLASSICAL = True` in cell 28 to refit). Every long cell saves its progress continuously and stops cleanly when `TIME_BUDGET_H` (cell 0, 11 h by default) is reached. To continue, run all cells again: finished lags, folds and seeds are read back from `results/` and are not retrained.
 
 **Smoke test:**
 
@@ -312,7 +314,13 @@ This uses 3 seeds, 3 epochs, lags 1 and 5, and the last 400 points of each serie
 | 23 | ALSTM-SNP diagnostics: matched protocol, no firing condition, no threshold adaptation, surrogate slope 1, measured firing activity | (in the above) |
 | 24 | echo-type SNP reservoir baseline (closed form) | minutes to about an hour |
 | 25 | inference energy of TRACE-SNP v1, v2 and TRACE-SNP-AF with one common code path | minutes |
-| 26 | every figure and table of the paper and of the supplementary material | 1–2 min |
+| 26 | extended comparison: settings, data manifest (SHA-256 of every series, the EPL source column), check that every stored forecast matches its series and that the persistence RMSE of the leaderboard is reproduced | seconds |
+| 27 | constant forecasts at the training mean and median, against persistence | seconds |
+| 28 | classical statistical forecasters: ARIMA (order by AIC, coefficients by maximum likelihood before each test block), simple and damped Holt exponential smoothing, seasonal naive, training median | about 5 min (CPU) |
+| 29 | largest Lyapunov exponent of the three chaotic generators (two-trajectory method) and the horizons in Lyapunov times | about 1 min (CPU) |
+| 30 | operation counts: the counting rule of the energy model against the counts stored with every TRACE-SNP-AF forecast | seconds |
+| 31 | how often TRACE-SNP-AF selects a fallback candidate; summary of cells 26–31 | seconds |
+| 32 | every figure and table of the paper and of the supplementary material, including the extended comparison | 1–2 min |
 
 ## Outputs
 
@@ -326,22 +334,26 @@ results/
   comparison/final_all11_*              leaderboards, tests, energy and noise tables, figures (cell 11)
   revisions/                            cells 12–25: ablation, ranking, basis study, TRACE-SNP-AF, control experiments
                                         (r2_*.csv), figures and LaTeX tables
+  revisions/extended_checks/            cells 26–31: data manifest, stored-forecast checks, classical forecasters
+                                        (statistical_baselines*.csv), constant forecasts, Lyapunov times,
+                                        operation-count check, fallback shares, SUMMARY.md
 paper_final/
   figures/*.pdf, *.png                  every figure of the paper and the supplement
   tables/*.tex, tables/r2_macros.tex    every generated table, and the numbers of cells 21–25 as LaTeX macros
+  tables/ext_macros.tex                 the numbers of the extended comparison (cells 26–31) as LaTeX macros
   numbers.md                            every number the text quotes
 paper_final.zip                         the paper_final/ folder in one archive
 ```
 
 ## Where each table and figure comes from
 
-Cell 26 draws every file in `paper_final/`. It computes nothing new: it reads the results of the cells listed here.
+Cell 32 draws every file in `paper_final/`. It computes nothing new: it reads the results of the cells listed here.
 
-| Output of cell 26 | Content | Results from cells |
+| Output of cell 32 | Content | Results from cells |
 |---|---|---|
 | `fig_arch_alstm`, `fig_arch_trace`, `fig1_family`, `figS1_bound` | architecture and family diagrams; the bound illustration | – |
 | `fig2_datasets` | the 11 series with their test blocks | 3 |
-| `tab_scores`, `tab_scores_h1/h6/h24`, `fig4_scores`, `figS3_lags_*`, `figS4_horizons` | accuracy of every model per dataset, lag and horizon | 7–11, 18 |
+| `tab_scores`, `tab_scores_h1/h6/h24`, `fig4_scores`, `figS3_lags_*`, `figS4_horizons` | accuracy of every model per dataset, lag and horizon (`figS4_horizons`: the chaotic panels also give h = 24 in Lyapunov times) | 7–11, 18, 29 |
 | `fig3_cd`, `figS2_cd_settings`, `tab_friedman`, `tab_pairwise_*`, `tab_winrate`, `tab_r2_bayes`, `tab_r2_rank17` | ranking over the 11 datasets and pairwise tests | 11, 14, 18, 21–24 |
 | `fig5_ablation`, `figS5_rbf_problems`, `tab_basis_by_dataset` | firing-condition ablation and basis study | 13, 17 |
 | `fig6_af`, `figS6_af_by_lag`, `figS7_dm_af_v2`, `tab_dm_af_v2` | TRACE-SNP-AF: chosen conditions, activity, tests against v2 | 18 |
@@ -352,6 +364,12 @@ Cell 26 draws every file in `paper_final/`. It computes nothing new: it reads th
 | `figS11_forecasts` | example forecasts | 7–10, 18 |
 | `figS12_v2_choices`, `tab_v2_params`, `tab_nets` | selected configurations, parameter counts, training settings | 10, 12 |
 | `tab_r2_tuning`, `tab_r2_direct`, `tab_r2_alstm`, `tab_r2_echo`, `tab_r2_energy`, `r2_macros` | control experiments | 21–25 |
+| `tab_ext_ranks`, `figS18_extended_cd` | ranking over the 11 datasets with the classical forecasters added, with and without the Transformers | 7–11, 18, 28 |
+| `tab_ext_classical` | score of every classical forecaster per dataset, with the selected ARIMA order | 18, 28 |
+| `tab_ext_pairwise`, `figS19_extended_h2h` | TRACE-SNP-AF against each classical forecaster, DLinear and ridge AR(L): Wilcoxon–Holm and Bayesian signed-rank | 18, 28 |
+| `tab_ext_constant` | constant forecasts at the training mean and median | 27 |
+| `tab_ext_lyapunov` | Lyapunov exponents and the horizons in Lyapunov times | 29 |
+| `ext_macros` | every number of the extended comparison that the text quotes | 26–31 |
 
 ## Reproducibility
 
@@ -359,6 +377,8 @@ Cell 26 draws every file in `paper_final/`. It computes nothing new: it reads th
 - **Closed-form members:** they have no seeds. Their fits are deterministic up to floating-point summation order on the GPU.
 - **Training precision:** fp32 throughout (`AMP_DTYPE = None`, `ALLOW_TF32 = False`).
 - **Test blocks:** they are used only for the reported scores. Every choice of configuration is made on the training rows and the validation blocks.
+- **Classical forecasters:** the ARIMA fits are maximum-likelihood optimisations, so a different `statsmodels` / SciPy version can move a few ARIMA scores in the third decimal. Cell 28 reuses `statistical_baselines.csv` and `statistical_baselines_by_h.csv` from `results/revisions/extended_checks/` when they are present, which reproduces the reported numbers exactly.
+- **Stored-forecast check:** cell 26 stops if any stored forecast does not match its series (`EXT_STRICT = True`), so every number of the extended comparison is tied to the series of cell 3.
 
 ## References
 
@@ -463,6 +483,18 @@ Zeng, A., Chen, M., Zhang, L., & Xu, Q. (2023). Are transformers effective for t
 Zhou, H., Zhang, S., Peng, J., Zhang, S., Li, J., Xiong, H., & Zhang, W. (2021). Informer: Beyond efficient transformer for long sequence time-series forecasting. In *Proceedings of the AAAI Conference on Artificial Intelligence* (Vol. 35, pp. 11106–11115). <https://doi.org/10.1609/aaai.v35i12.17325>
 
 Zhou, T., Ma, Z., Wen, Q., Wang, X., Sun, L., & Jin, R. (2022). FEDformer: Frequency enhanced decomposed transformer for long-term series forecasting. In *Proceedings of the 39th International Conference on Machine Learning* (Proceedings of Machine Learning Research, Vol. 162, pp. 27268–27286). PMLR. <https://doi.org/10.48550/arXiv.2201.12740>
+
+### Classical forecasting and dynamical systems
+
+Akaike, H. (1974). A new look at the statistical model identification. *IEEE Transactions on Automatic Control*, *19*(6), 716–723. <https://doi.org/10.1109/TAC.1974.1100705>
+
+Benettin, G., Galgani, L., Giorgilli, A., & Strelcyn, J.-M. (1980). Lyapunov characteristic exponents for smooth dynamical systems and for Hamiltonian systems; a method for computing all of them. Part 1: Theory. *Meccanica*, *15*(1), 9–20. <https://doi.org/10.1007/BF02128236>
+
+Box, G. E. P., Jenkins, G. M., Reinsel, G. C., & Ljung, G. M. (2015). *Time series analysis: Forecasting and control* (5th ed.). Wiley.
+
+Gardner, E. S., Jr., & McKenzie, E. (1985). Forecasting trends in time series. *Management Science*, *31*(10), 1237–1246. <https://doi.org/10.1287/mnsc.31.10.1237>
+
+Hyndman, R. J., & Athanasopoulos, G. (2021). *Forecasting: Principles and practice* (3rd ed.). OTexts. <https://otexts.com/fpp3/>
 
 ### Datasets
 
